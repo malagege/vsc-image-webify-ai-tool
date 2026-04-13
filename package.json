@@ -4,6 +4,10 @@
   "description": "AI Tool bridge for vsc-image-webify: convert images via Copilot Chat / Language Model Tools",
   "version": "0.1.0",
   "publisher": "malagege",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/malagege/vsc-image-webify-ai-tool.git"
+  },
   "engines": {
     "vscode": "^1.95.0"
   },
