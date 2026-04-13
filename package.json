@@ -28,9 +28,6 @@
     "onStartupFinished"
   ],
   "main": "./dist/extension.js",
-  "extensionDependencies": [
-    "geckod22.vsc-image-webify"
-  ],
   "contributes": {
     "commands": [
       {

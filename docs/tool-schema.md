@@ -142,8 +142,8 @@ Returns extension capabilities and dependency status.
   "dependency": {
     "extensionInstalled": true,
     "extensionActive": true,
-    "extensionId": "geckod22.vsc-image-webify",
-    "availableCommands": ["vsc-image-webify.convertToWebP"],
+    "extensionId": "armando-liccardo-dev.image-webify",
+    "availableCommands": ["image-webify.convertToWebp"],
     "hasExports": false,
     "recommendedStrategy": "command-bridge"
   }

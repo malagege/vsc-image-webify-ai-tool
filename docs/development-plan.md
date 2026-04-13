@@ -4,7 +4,7 @@
 
 Build a VS Code extension that:
 1. Exposes image conversion as Language Model Tools for Copilot Chat
-2. Bridges `geckod22.vsc-image-webify` when available
+2. Bridges `armando-liccardo-dev.image-webify` when available
 3. Falls back to `sharp` for standalone conversion
 4. Provides a rich, reliable developer experience
 

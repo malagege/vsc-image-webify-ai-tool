@@ -1,4 +1,9 @@
 import * as vscode from 'vscode';
+import {
+  DEPENDENCY_EXTENSION_ID,
+  DEPENDENCY_EXTENSION_NAME,
+  DEPENDENCY_MARKETPLACE_URL,
+} from '../constants/ids';
 import { detectDependency } from '../core/dependencyDetector';
 import { logger } from '../utils/logger';
 
@@ -19,9 +24,10 @@ export async function doctorCommand(): Promise<void> {
   ];
 
   if (!depStatus.extensionInstalled) {
-    lines.push('', '⚠️  Action Required:');
-    lines.push('   Install geckod22.vsc-image-webify from VS Code Marketplace');
-    lines.push('   Then reload VS Code window');
+    lines.push('', 'ℹ️  Optional Dependency:');
+    lines.push(`   Install ${DEPENDENCY_EXTENSION_NAME} from VS Code Marketplace for command/export bridging`);
+    lines.push(`   ${DEPENDENCY_MARKETPLACE_URL}`);
+    lines.push('   Otherwise the built-in sharp fallback bridge will be used');
   } else if (!depStatus.extensionActive) {
     lines.push('', '⚠️  Action Required:');
     lines.push('   Reload VS Code window to activate the dependency extension');
@@ -35,6 +41,6 @@ export async function doctorCommand(): Promise<void> {
   vscode.window.showInformationMessage(
     depStatus.extensionInstalled
       ? `✅ Dependency OK (Strategy: ${depStatus.recommendedStrategy})`
-      : `❌ Dependency NOT installed: geckod22.vsc-image-webify`,
+      : `ℹ️ Optional dependency not installed: ${DEPENDENCY_EXTENSION_ID} (using fallback-bridge)`,
   );
 }
