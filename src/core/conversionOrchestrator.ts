@@ -42,7 +42,7 @@ export async function orchestrateConversion(
     };
   }
 
-  const bridge = selectBridge(depStatus);
+  const bridge = selectBridge(depStatus, request.targetFormat);
   logger.info(`Using bridge strategy: ${bridge.strategy}`);
 
   try {
@@ -75,7 +75,7 @@ export async function orchestrateBatchConversion(
 
   const resolvedInputs = await expandInputs(request.inputs, request.recursive ?? false);
 
-  const bridge = selectBridge(depStatus);
+  const bridge = selectBridge(depStatus, request.targetFormat);
   const results: ConversionResult[] = [];
 
   for (const inputFile of resolvedInputs) {

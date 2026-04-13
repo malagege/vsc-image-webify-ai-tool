@@ -19,6 +19,7 @@ export const KNOWN_DEPENDENCY_COMMANDS = [
   'image-webify.convertToWebp',
   'image-webify.convertToAvif',
 ] as const;
+export const DEPENDENCY_SUPPORTED_OUTPUT_FORMATS = ['webp', 'avif'] as const;
 
 export const SUPPORTED_INPUT_FORMATS = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'webp'] as const;
 export const SUPPORTED_OUTPUT_FORMATS = ['webp', 'avif', 'png', 'jpg', 'jpeg'] as const;

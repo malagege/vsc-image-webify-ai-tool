@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import { DEPENDENCY_EXTENSION_ID, KNOWN_DEPENDENCY_COMMANDS } from '../../constants/ids';
+import { selectBridge } from '../../bridges/bridgeSelector';
 import { DependencyStatus } from '../../types/conversion';
 
 suite('BridgeSelector Unit Tests', () => {
@@ -26,5 +27,14 @@ suite('BridgeSelector Unit Tests', () => {
       recommendedStrategy: 'command-bridge',
     });
     assert.strictEqual(status.recommendedStrategy, 'command-bridge');
+  });
+
+  test('Should fall back for unsupported dependency target formats', () => {
+    const status = mockDepStatus({
+      availableCommands: [KNOWN_DEPENDENCY_COMMANDS[0]],
+      recommendedStrategy: 'command-bridge',
+    });
+
+    assert.strictEqual(selectBridge(status, 'png').strategy, 'fallback-bridge');
   });
 });
