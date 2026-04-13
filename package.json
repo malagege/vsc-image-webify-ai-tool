@@ -1,0 +1,251 @@
+{
+  "name": "vsc-image-webify-ai-tool",
+  "displayName": "Image Webify AI Tool",
+  "description": "AI Tool bridge for vsc-image-webify: convert images via Copilot Chat / Language Model Tools",
+  "version": "0.1.0",
+  "publisher": "malagege",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "image",
+    "webp",
+    "avif",
+    "conversion",
+    "copilot",
+    "ai",
+    "lm-tool"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "extensionDependencies": [
+    "geckod22.vsc-image-webify"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vsc-image-webify-ai-tool.convertImage",
+        "title": "Image Webify AI: Convert Image"
+      },
+      {
+        "command": "vsc-image-webify-ai-tool.doctor",
+        "title": "Image Webify AI: Doctor (Check Dependencies)"
+      }
+    ],
+    "configuration": {
+      "title": "Image Webify AI Tool",
+      "properties": {
+        "imageWebifyAi.preferBridge": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "command",
+            "export",
+            "fallback"
+          ],
+          "default": "auto",
+          "description": "Preferred bridge strategy for image conversion"
+        },
+        "imageWebifyAi.defaultQuality": {
+          "type": "number",
+          "default": 85,
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Default quality for image conversion (1-100)"
+        },
+        "imageWebifyAi.defaultOutputFormat": {
+          "type": "string",
+          "enum": [
+            "webp",
+            "avif"
+          ],
+          "default": "webp",
+          "description": "Default output format for image conversion"
+        },
+        "imageWebifyAi.overwriteByDefault": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to overwrite existing output files by default"
+        },
+        "imageWebifyAi.enableBatchTool": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the batch conversion AI tool"
+        },
+        "imageWebifyAi.logLevel": {
+          "type": "string",
+          "enum": [
+            "debug",
+            "info",
+            "warn",
+            "error"
+          ],
+          "default": "info",
+          "description": "Log level for the extension"
+        }
+      }
+    },
+    "languageModelTools": [
+      {
+        "name": "imagewebify_convert",
+        "tags": [
+          "image",
+          "conversion",
+          "webp",
+          "avif"
+        ],
+        "toolReferenceName": "imagewebify_convert",
+        "displayName": "Convert Image",
+        "modelDescription": "Convert a single image file to a target format (webp, avif, png, jpg, jpeg). Provide the input file path, target format, and optional quality setting.",
+        "icon": "$(file-media)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "string",
+              "description": "Path to the input image file (absolute or relative to workspace)"
+            },
+            "targetFormat": {
+              "type": "string",
+              "enum": [
+                "webp",
+                "avif",
+                "png",
+                "jpg",
+                "jpeg"
+              ],
+              "description": "Target image format"
+            },
+            "quality": {
+              "type": "number",
+              "description": "Output quality (1-100, default: 85)",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "output": {
+              "type": "string",
+              "description": "Optional output file path. If not provided, uses same directory as input with new extension."
+            },
+            "overwrite": {
+              "type": "boolean",
+              "description": "Whether to overwrite existing output file (default: false)"
+            }
+          },
+          "required": [
+            "input",
+            "targetFormat"
+          ]
+        }
+      },
+      {
+        "name": "imagewebify_batch_convert",
+        "tags": [
+          "image",
+          "conversion",
+          "batch",
+          "webp",
+          "avif"
+        ],
+        "toolReferenceName": "imagewebify_batch_convert",
+        "displayName": "Batch Convert Images",
+        "modelDescription": "Convert multiple image files to a target format. Provide an array of input paths or a directory, target format, and optional settings.",
+        "icon": "$(files)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Array of input image file paths or a single directory path"
+            },
+            "targetFormat": {
+              "type": "string",
+              "enum": [
+                "webp",
+                "avif",
+                "png",
+                "jpg",
+                "jpeg"
+              ],
+              "description": "Target image format"
+            },
+            "quality": {
+              "type": "number",
+              "description": "Output quality (1-100, default: 85)",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "outputDir": {
+              "type": "string",
+              "description": "Optional output directory. If not provided, outputs alongside each input file."
+            },
+            "recursive": {
+              "type": "boolean",
+              "description": "Whether to recursively scan directories (default: false)"
+            },
+            "overwrite": {
+              "type": "boolean",
+              "description": "Whether to overwrite existing output files (default: false)"
+            }
+          },
+          "required": [
+            "inputs",
+            "targetFormat"
+          ]
+        }
+      },
+      {
+        "name": "imagewebify_get_capabilities",
+        "tags": [
+          "image",
+          "capabilities",
+          "diagnostics"
+        ],
+        "toolReferenceName": "imagewebify_get_capabilities",
+        "displayName": "Get Image Webify Capabilities",
+        "modelDescription": "Get the current capabilities and dependency status of the Image Webify AI Tool extension. Useful for diagnosing issues or checking what features are available.",
+        "icon": "$(info)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "includeDependencyStatus": {
+              "type": "boolean",
+              "description": "Whether to include dependency extension status (default: true)"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js",
+    "build:dev": "node esbuild.js --dev",
+    "watch": "node esbuild.js --watch",
+    "compile": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run build:dev",
+    "test": "node ./dist/test/runTests.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.0.0",
+    "@types/sharp": "^0.31.1",
+    "@types/vscode": "^1.95.0",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.21.5",
+    "glob": "^13.0.6",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "sharp": "^0.33.4"
+  }
+}
