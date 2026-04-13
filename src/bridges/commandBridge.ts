@@ -34,9 +34,8 @@ export async function executeCommandBridge(request: ConversionRequest): Promise<
     };
   } catch (err) {
     logger.warn(`Command ${command} failed: ${err}`);
+    throw err instanceof Error ? err : new Error(String(err));
   }
-
-  throw new Error('No available command bridge succeeded');
 }
 
 function getDependencyCommand(targetFormat: string): string | undefined {
