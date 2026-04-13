@@ -1,5 +1,8 @@
 export const EXTENSION_ID = 'malagege.vsc-image-webify-ai-tool';
-export const DEPENDENCY_EXTENSION_ID = 'geckod22.vsc-image-webify';
+export const DEPENDENCY_EXTENSION_ID = 'armando-liccardo-dev.image-webify';
+export const DEPENDENCY_EXTENSION_NAME = 'Image Webify';
+export const DEPENDENCY_MARKETPLACE_URL =
+  'https://marketplace.visualstudio.com/items?itemName=armando-liccardo-dev.image-webify';
 
 export const COMMANDS = {
   CONVERT_IMAGE: 'vsc-image-webify-ai-tool.convertImage',
@@ -13,9 +16,8 @@ export const TOOL_NAMES = {
 } as const;
 
 export const KNOWN_DEPENDENCY_COMMANDS = [
-  'vsc-image-webify.convertToWebP',
-  'vsc-image-webify.convertToAvif',
-  'vsc-image-webify.convert',
+  'image-webify.convertToWebp',
+  'image-webify.convertToAvif',
 ] as const;
 
 export const SUPPORTED_INPUT_FORMATS = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'webp'] as const;

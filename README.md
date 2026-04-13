@@ -1,6 +1,6 @@
 # Image Webify AI Tool
 
-A VS Code extension that bridges [`geckod22.vsc-image-webify`](https://marketplace.visualstudio.com/items?itemName=geckod22.vsc-image-webify) with VS Code's **Language Model Tools API** (Copilot Chat), enabling image format conversion via natural language AI commands.
+A VS Code extension that bridges [`armando-liccardo-dev.image-webify`](https://marketplace.visualstudio.com/items?itemName=armando-liccardo-dev.image-webify) with VS Code's **Language Model Tools API** (Copilot Chat), enabling image format conversion via natural language AI commands.
 
 ## Features
 
@@ -13,7 +13,7 @@ A VS Code extension that bridges [`geckod22.vsc-image-webify`](https://marketpla
 ## Requirements
 
 - VS Code **^1.95.0** (Language Model Tools API support)
-- [`geckod22.vsc-image-webify`](https://marketplace.visualstudio.com/items?itemName=geckod22.vsc-image-webify) *(recommended but not strictly required — fallback uses `sharp`)*
+- [`armando-liccardo-dev.image-webify`](https://marketplace.visualstudio.com/items?itemName=armando-liccardo-dev.image-webify) *(recommended but not strictly required — fallback uses `sharp`)*
 - GitHub Copilot Chat
 
 ## Usage

@@ -1,3 +1,5 @@
+import { DEPENDENCY_EXTENSION_ID, DEPENDENCY_EXTENSION_NAME, DEPENDENCY_MARKETPLACE_URL } from '../constants/ids';
+
 export type ErrorCode =
   | 'DEPENDENCY_NOT_INSTALLED'
   | 'DEPENDENCY_NOT_ACTIVE'
@@ -11,8 +13,8 @@ export type ErrorCode =
   | 'INVALID_INPUT';
 
 export const ERROR_MESSAGES: Record<ErrorCode, string> = {
-  DEPENDENCY_NOT_INSTALLED: 'Required extension geckod22.vsc-image-webify is not installed',
-  DEPENDENCY_NOT_ACTIVE: 'Required extension geckod22.vsc-image-webify is not active',
+  DEPENDENCY_NOT_INSTALLED: `Optional extension ${DEPENDENCY_EXTENSION_ID} is not installed`,
+  DEPENDENCY_NOT_ACTIVE: `Optional extension ${DEPENDENCY_EXTENSION_ID} is not active`,
   NO_SUPPORTED_BRIDGE: 'No supported bridge strategy is available for image conversion',
   INPUT_FILE_NOT_FOUND: 'Input file not found',
   INVALID_TARGET_FORMAT: 'Invalid target format. Supported: webp, avif, png, jpg, jpeg',
@@ -25,15 +27,16 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
 
 export const ERROR_RECOVERY: Record<ErrorCode, string[]> = {
   DEPENDENCY_NOT_INSTALLED: [
-    'Install geckod22.vsc-image-webify from the VS Code Marketplace',
+    `Install ${DEPENDENCY_EXTENSION_NAME} from the VS Code Marketplace`,
+    DEPENDENCY_MARKETPLACE_URL,
     'Reload VS Code window after installation',
   ],
   DEPENDENCY_NOT_ACTIVE: [
-    'Reload VS Code window to activate geckod22.vsc-image-webify',
+    `Reload VS Code window to activate ${DEPENDENCY_EXTENSION_ID}`,
     'Check if the extension is enabled in the Extensions panel',
   ],
   NO_SUPPORTED_BRIDGE: [
-    'Ensure geckod22.vsc-image-webify is installed and active',
+    `Ensure ${DEPENDENCY_EXTENSION_ID} is installed and active, or use the fallback bridge`,
     'Try reloading the VS Code window',
   ],
   INPUT_FILE_NOT_FOUND: [

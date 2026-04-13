@@ -2,7 +2,7 @@
 
 ## Overview
 
-The extension uses a three-tier bridge strategy to ensure image conversion always works, even when the `geckod22.vsc-image-webify` dependency is unavailable or incompatible.
+The extension uses a three-tier bridge strategy to ensure image conversion always works, even when the `armando-liccardo-dev.image-webify` dependency is unavailable or incompatible.
 
 ## Bridge Priority
 
@@ -17,11 +17,11 @@ auto mode:
 
 ### 1. Command Bridge (`command-bridge`)
 
-**When used:** `geckod22.vsc-image-webify` is installed, active, and registers known commands.
+**When used:** `armando-liccardo-dev.image-webify` is installed, active, and registers known commands.
 
 **How it works:**
-- Calls `vscode.commands.executeCommand('vsc-image-webify.convertToWebP', uri, options)`
-- Falls back to `vsc-image-webify.convert` with format parameter
+- Calls `vscode.commands.executeCommand('image-webify.convertToWebp', uri, options)`
+- Calls `vscode.commands.executeCommand('image-webify.convertToAvif', uri, options)`
 - Leverages the full feature set of vsc-image-webify
 
 **Pros:** Best integration; uses vsc-image-webify's own conversion logic  
@@ -29,7 +29,7 @@ auto mode:
 
 ### 2. Export Bridge (`export-bridge`)
 
-**When used:** `geckod22.vsc-image-webify` is active and exports a `convert`/`convertImage`/`webify` function.
+**When used:** `armando-liccardo-dev.image-webify` is active and exports a `convert`/`convertImage`/`webify` function.
 
 **How it works:**
 - Accesses `extension.exports` directly
@@ -45,7 +45,7 @@ auto mode:
 **How it works:**
 - Uses the bundled `sharp` Node.js library
 - Performs conversion entirely within the extension process
-- No dependency on `geckod22.vsc-image-webify`
+- No dependency on `armando-liccardo-dev.image-webify`
 
 **Supported conversions:**
 - `→ webp`: `sharp().webp({ quality })`

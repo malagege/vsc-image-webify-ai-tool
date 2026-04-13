@@ -1,4 +1,5 @@
 import * as assert from 'assert';
+import { KNOWN_DEPENDENCY_COMMANDS } from '../../constants/ids';
 
 suite('DependencyDetector Unit Tests', () => {
   test('Should identify fallback strategy when extension not installed', () => {
@@ -21,7 +22,7 @@ suite('DependencyDetector Unit Tests', () => {
   test('Should identify command-bridge strategy when commands available', () => {
     const extensionInstalled = true;
     const extensionActive = true;
-    const availableCommands = ['vsc-image-webify.convertToWebP'];
+    const availableCommands = [KNOWN_DEPENDENCY_COMMANDS[0]];
     const hasExports = false;
 
     const strategy = extensionActive && availableCommands.length > 0

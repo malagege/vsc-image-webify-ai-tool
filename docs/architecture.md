@@ -2,7 +2,7 @@
 
 ## Overview
 
-`vsc-image-webify-ai-tool` is a VS Code extension that exposes image conversion capabilities as Language Model Tools (LM Tools / AI Tools), bridging the `geckod22.vsc-image-webify` extension with GitHub Copilot Chat.
+`vsc-image-webify-ai-tool` is a VS Code extension that exposes image conversion capabilities as Language Model Tools (LM Tools / AI Tools), bridging the `armando-liccardo-dev.image-webify` extension with GitHub Copilot Chat.
 
 ## Component Diagram
 
@@ -67,7 +67,7 @@ Implements traditional VS Code commands for the Command Palette, providing UI di
 - **requestParser**: Validates and normalizes tool/command inputs
 - **conversionOrchestrator**: Coordinates conversion flow including file existence checks and batch expansion
 - **resultFormatter**: Formats results as structured JSON strings for LM consumption
-- **dependencyDetector**: Detects `geckod22.vsc-image-webify` status and selects bridge strategy
+- **dependencyDetector**: Detects `armando-liccardo-dev.image-webify` status and selects bridge strategy
 
 ### Bridge Layer (`src/bridges/`)
 Three bridge implementations with a selector:
