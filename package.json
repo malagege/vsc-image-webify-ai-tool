@@ -104,6 +104,8 @@
         "toolReferenceName": "imagewebify_convert",
         "displayName": "Convert Image",
         "modelDescription": "Convert a single image file to a target format (webp, avif, png, jpg, jpeg). Provide the input file path, target format, and optional quality setting.",
+        "userDescription": "Convert one image to another format.",
+        "canBeReferencedInPrompt": true,
         "icon": "$(file-media)",
         "inputSchema": {
           "type": "object",
@@ -156,6 +158,8 @@
         "toolReferenceName": "imagewebify_batch_convert",
         "displayName": "Batch Convert Images",
         "modelDescription": "Convert multiple image files to a target format. Provide an array of input paths or a directory, target format, and optional settings.",
+        "userDescription": "Convert multiple images or a folder of images to another format.",
+        "canBeReferencedInPrompt": true,
         "icon": "$(files)",
         "inputSchema": {
           "type": "object",
@@ -213,6 +217,8 @@
         "toolReferenceName": "imagewebify_get_capabilities",
         "displayName": "Get Image Webify Capabilities",
         "modelDescription": "Get the current capabilities and dependency status of the Image Webify AI Tool extension. Useful for diagnosing issues or checking what features are available.",
+        "userDescription": "Show the extension's current capabilities and dependency status.",
+        "canBeReferencedInPrompt": true,
         "icon": "$(info)",
         "inputSchema": {
           "type": "object",
@@ -226,6 +232,9 @@
       }
     ]
   },
+  "extensionDependencies": [
+    "GitHub.copilot-chat"
+  ],
   "scripts": {
     "vscode:prepublish": "npm run build",
     "build": "node esbuild.js",
